@@ -94,5 +94,10 @@ async def front_page(ctx):
 async def BKT(ctx):
     image = ImgurBot.BikiniBottomTwitter()
     await ctx.send(image)
+    
+    
+'''
+ADD COMMAND FOR UPDATES ON PYTHON FILES HERE
+'''
 
 bot.run(TOKEN)
