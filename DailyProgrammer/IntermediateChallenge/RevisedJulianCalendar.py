@@ -32,3 +32,13 @@ each year in the range.
 
 leaps(123456789101112, 1314151617181920) => 288412747246240
 '''
+
+#There are 24 leap years between 0-100 (excluding 100) in the gregorian caledar.
+#Using this knowledge we can determine how many leap years there are and subtract
+#the outliers. Not all inputs will start and end at a number divisible by 100. 
+#Thus we will create a function for "firstleapyear" to find out where the leap
+#years start, and go from there.
+
+def leaps:
+    
+def firstLeapYear:
