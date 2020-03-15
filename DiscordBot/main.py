@@ -100,4 +100,24 @@ async def BKT(ctx):
 ADD COMMAND FOR UPDATES ON PYTHON FILES HERE
 '''
 
+@bot.command(description="users can add what needs to be done for scripts on GitHub")
+async def addToDo(ctx, usermessage):
+    toDoFile = open("todofile.txt","a")
+    params = usermessage.split(" ")
+    #command = params[0][1:]
+    message = " ".join(params[1:])
+    print(message)
+    toDoFile.write(message)
+    toDoFile.close()
+    await ctx.send('item has been added to "To Do" List')
+    
+@bot.command(description='Lets users view the "To Do" List')
+async def toDo(ctx):
+    try:
+        toDoFile = open("todofile.txt", "r")
+        await ctx.send(toDoFile.readlines())
+    except:
+        await ctx.send('no items in "To Do" list')
+
+
 bot.run(TOKEN)
