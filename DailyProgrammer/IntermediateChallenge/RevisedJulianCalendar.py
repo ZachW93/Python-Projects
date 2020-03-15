@@ -75,15 +75,4 @@ def leaps(year1, year2):
         
 print(leaps(2001,2004))
 print(leaps(2000,2004)) 
-print(leaps(2000,2009))            
-           
-    
-
-    
-    
-    
-=======
-def leaps:
-    
-def firstLeapYear:
->>>>>>> e83ff55fd9538f6440b2d647e6981d5aa4697a61
+print(leaps(2000,2009))
