@@ -32,3 +32,96 @@ each year in the range.
 
 leaps(123456789101112, 1314151617181920) => 288412747246240
 '''
+
+#There are 24 leap years between 0-100 (excluding 100) in the gregorian caledar.
+#Using this knowledge we can determine how many leap years there are and subtract
+#the outliers. Not all inputs will start and end at a number divisible by 100. 
+#Thus we will create a function for "firstleapyear" to find out where the leap
+#years start, and go from there.
+
+
+def leaps(year1, year2):
+    
+    leapYearCounter = 0;
+    currentYear = year1;
+    
+    while leapYearCounter < 1:
+        
+        if currentYear % 4 == 0:
+        
+            if (currentYear % 100 == 0) & (currentYear % 900 != (200 or 600)):
+                
+                currentYear += 1;
+                
+            else:
+                
+                leapYearCounter += 1;
+                
+        else:
+            
+            currentYear += 1;
+            
+    if (currentYear < year2) & (year2 - currentYear < 5):
+        
+        return 1
+    
+    elif currentYear >= year2:
+    
+        return 0
+    
+    else:
+        
+        while currentYear % 100 != 0:
+            
+            currentYear += 4;
+            leapYearCounter += 1;
+        
+        while currentYear % 1000 != 0:
+            
+            if currentYear % 900 != (200 or 600):
+                
+                currentYear += 100;
+                leapYearCounter += 24;
+                
+            else:
+                
+                currentYear += 100;
+                leapYearCounter += 25;
+
+        while currentYear < year2 and year2 - currentYear > 1000:
+            
+            if currentYear % 4000 == 2000:
+            
+                leapYearCounter += 243;
+                
+            else:
+                
+                leapYearCounter += 242;
+                
+            currentYear += 1000;
+            
+        while currentYear < year2:
+                 
+            if (currentYear % 100 == 0) & currentYear % 900 == (200 or 600):
+
+                currentYear += 4;
+                leapYearCounter += 1;
+
+                
+            elif (currentYear % 100 == 0):
+                
+                currentYear += 4;
+
+            else:
+        
+                leapYearCounter += 1;
+                currentYear += 4;
+           
+    return leapYearCounter   
+        
+print(leaps(2001,2004))
+print(leaps(1000,2016)) 
+print(leaps(2000,2009))
+print(leaps(1987, 2001))
+
+
