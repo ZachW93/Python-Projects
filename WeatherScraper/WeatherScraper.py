@@ -8,6 +8,7 @@ import requests
 from bs4 import BeautifulSoup
 import GoogleWeatherSearch
 import time
+import GoogleGeoCode
 
 city = input("Please enter the city you'd like to see the temperatures of: ")
 state = input("Please enter the two letter abbreviation of the state the city is located in: ")
