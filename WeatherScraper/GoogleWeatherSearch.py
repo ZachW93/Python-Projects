@@ -1,3 +1,7 @@
+'''
+This function allows us to search the weathe by a given Zip Code into google.
+'''
+
 import requests
  
  
