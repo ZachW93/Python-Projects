@@ -9,12 +9,23 @@ from bs4 import BeautifulSoup
 import GoogleWeatherSearch
 import time
 
+city = input("Please enter the city you'd like to see the temperatures of: ")
+state = input("Please enter the two letter abbreviation of the state the city is located in: ")
+
+
+try:
+    city = city.replace(" ", '-')
+    
+except:
+    
+    city = city;
+
 tempByZip = {};
 counter = 0;
 ocounter = 0;
 t0 = time.time()
 
-page = requests.get('https://www.zip-codes.com/city/ca-los-angeles.asp') #This URL contains all Zip Codes for LA.
+page = requests.get('https://www.zip-codes.com/city/' + state + '-' + city + '.asp') #This URL contains all Zip Codes for the city.
 
 soup = BeautifulSoup(page.text, 'html.parser')
 
