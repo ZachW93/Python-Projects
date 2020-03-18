@@ -120,4 +120,7 @@ async def toDo(ctx):
         await ctx.send('no items in "To Do" list')
 
 
+@bot.command(description='Help function')
+async def help()
+        
 bot.run(TOKEN)
