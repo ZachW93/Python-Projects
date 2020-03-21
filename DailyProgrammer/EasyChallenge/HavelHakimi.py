@@ -70,5 +70,52 @@ rest of the sequence (1) would not be affected:
 
 def subtractOne(size, values):
     
-    list(filter(lambda num: num - 1, values))  
-    return values[0:size]
+    for i in range(size):
+    
+        values[i] = values[i] - 1 
+        
+    return values
+
+'''
+FINAL PART: Perform the Havel-Hakimi algorithm on a given sequence of answers. 
+This algorithm will return true if the answers are consistent (i.e. it's 
+possible that everyone is telling the truth) and false if the answers are 
+inconsistent (i.e. someone must be lying):
+'''
+
+def main_havelhakimi(values):
+    
+    eliminatedZeroes = elim0s(values)
+    
+    if eliminatedZeroes == []:
+        
+        return True
+    
+    else:
+    
+        grtToLst = greatestToLeast(eliminatedZeroes)
+        return grtToLst
+
+        n = grtToLst[0]
+        grtToLst.pop(grtToLst.index(0))
+        
+        if isGreaterThanLength(n, grtToLst) == True:
+            
+            return False
+        
+        else:
+            
+            return subtractOne(n, grtToLst)
+
+
+def hh(values):
+    
+    while main_havelhakimi(values) != (True or False):
+        
+        values = main_havelhakimi(values)
+        
+    return main_havelhakimi(values)
+        
+        
+hhlist =[5, 3, 0, 2, 6, 2, 0, 7, 2, 5]
+print(main_havelhakimi(hhlist))
