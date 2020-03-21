@@ -85,37 +85,29 @@ inconsistent (i.e. someone must be lying):
 
 def main_havelhakimi(values):
     
-    eliminatedZeroes = elim0s(values)
+    while values != True or False:
     
-    if eliminatedZeroes == []:
+        moddedlist = elim0s(values)
         
-        return True
-    
-    else:
-    
-        grtToLst = greatestToLeast(eliminatedZeroes)
-        return grtToLst
-
-        n = grtToLst[0]
-        grtToLst.pop(grtToLst.index(0))
-        
-        if isGreaterThanLength(n, grtToLst) == True:
+        if moddedlist == []:
             
-            return False
+            values = True
         
         else:
+        
+            greatestToLeast(moddedlist)
+            n = moddedlist[0]
+            moddedlist.pop(0)
             
-            return subtractOne(n, grtToLst)
-
-
-def hh(values):
+            if isGreaterThanLength(n, moddedlist) == True:
+                
+                values = False
+            
+            else:
+                
+                subtractOne(n, moddedlist)
+                values = moddedlist
     
-    while main_havelhakimi(values) != (True or False):
+    return values
+     
         
-        values = main_havelhakimi(values)
-        
-    return main_havelhakimi(values)
-        
-        
-hhlist =[5, 3, 0, 2, 6, 2, 0, 7, 2, 5]
-print(main_havelhakimi(hhlist))
