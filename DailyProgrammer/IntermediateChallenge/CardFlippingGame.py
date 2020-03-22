@@ -34,15 +34,15 @@ def flip(card_list):
     
     for i in range(len(card_list)):
         
-        if (list[i] == 0):
+        if (card_list[i] == 0):
             
             subresult = [i] + subresult
             
         else:
             
-            if (i+1 < len(list)):
+            if (i+1 < len(card_list)):
                 
-                list[i+1] = (list[i+1] + 1) % 2
+                card_list[i+1] = (card_list[i+1] + 1) % 2
                 
             result = result + [i] + subresult
             subresult = []
@@ -57,3 +57,4 @@ def flip(card_list):
 
 def flips(card_input):
     flip([int(num) for num in card_input])
+
