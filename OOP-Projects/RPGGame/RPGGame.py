@@ -4,8 +4,8 @@ import random
 import pickle
 import time
 
-weapons = {"Great Sword":40}
-potions = {"Potion":15}
+weapons = {"Great Sword":40, "Zweilhander":10}
+levels = [10, 30, 100, 500, 3000]
 
 class Player:
     def __init__(self, name):
@@ -15,6 +15,7 @@ class Player:
         self.base_attack = 10
         self.gold = 40
         self.pots = 0
+        self.exp = 150
         self.weap = ["Rusty Sword"]
         self.curweap = ["Rusty Sword"]
 
@@ -26,8 +27,15 @@ class Player:
 
         if self.curweap == "Great Sword":
             attack += 15
+            
+        if self.curweap == "Zweilhander":
+            attack += 50
 
         return attack
+
+    def currentLevel(self):
+        lvl = len([x for x in levels if self.exp > x])
+        return lvl
 
 
 class Goblin:
@@ -37,6 +45,7 @@ class Goblin:
         self.health = self.maxhealth
         self.attack = 5
         self.goldgain = 10
+        self.expgain = 5
 GoblinIG = Goblin("Goblin")
 
 class Zombie:
@@ -46,6 +55,7 @@ class Zombie:
         self.health = self.maxhealth
         self.attack = 7
         self.goldgain = 15
+        self.expgain = 15
 ZombieIG = Zombie("Zombie")
 
 def main():
@@ -97,6 +107,7 @@ def start1():
     print("3.) Save")
     print("4.) Exit")
     print("5.) Inventory")
+    print("6.) stats")
     option = input("--> ")
     if option == "1":
         prefight()
@@ -113,6 +124,9 @@ def start1():
         sys.exit()
     elif option == "5":
         inventory()
+    elif option == "6":
+        print("Your current Level is %s" % PlayerIG.currentLevel())
+        start1()
     else:
         start1()
 
@@ -191,6 +205,7 @@ def attack():
     print("\n")
     if enemy.health <=0:
         win()
+        
     os.system('clear')
     if EAttack == int(round(enemy.attack/2)):
         print("The enemy missed!")
@@ -243,6 +258,7 @@ def win():
     os.system('clear')
     enemy.health = enemy.maxhealth
     PlayerIG.gold += enemy.goldgain
+    PlayerIG.exp += enemy.expgain
     print("You have defeated the %s" % enemy.name)
     print("You found %i gold!" % enemy.goldgain)
     option = input(' ')
@@ -259,6 +275,7 @@ def store():
     print("Welcome to the shop!")
     print ("\nWhat would you like to buy?\n")
     print ("1.) Great Sword")
+    print ("2.) Zweilhander")
     print ("back")
     print (" ")
     option = input(' ')
