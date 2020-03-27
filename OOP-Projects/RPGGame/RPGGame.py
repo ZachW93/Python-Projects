@@ -3,39 +3,43 @@ import os
 import random
 import pickle
 import time
+from RPGClasses import Player
+from RPGInventory import inventory
 
 weapons = {"Great Sword":40, "Zweilhander":10}
 levels = [10, 30, 100, 500, 3000]
 
-class Player:
-    def __init__(self, name):
-        self.name = name
-        self.maxhealth = 100
-        self.health = self.maxhealth
-        self.base_attack = 10
-        self.gold = 40
-        self.pots = 0
-        self.exp = 150
-        self.weap = ["Rusty Sword"]
-        self.curweap = ["Rusty Sword"]
-
-    @property 
-    def attack(self):
-        attack = self.base_attack
-        if self.curweap == "Rusty Sword":
-            attack += 5
-
-        if self.curweap == "Great Sword":
-            attack += 15
-            
-        if self.curweap == "Zweilhander":
-            attack += 50
-
-        return attack
-
-    def currentLevel(self):
-        lvl = len([x for x in levels if self.exp > x])
-        return lvl
+#class Player:
+#    
+#    def __init__(self, name):
+#        
+#        self.name = name
+#        self.maxhealth = 100
+#        self.health = self.maxhealth
+#        self.base_attack = 10
+#        self.gold = 40
+#        self.pots = 0
+#        self.exp = 150
+#        self.weap = ["Rusty Sword"]
+#        self.curweap = ["Rusty Sword"]
+#
+#    @property 
+#    def attack(self):
+#        attack = self.base_attack
+#        if self.curweap == "Rusty Sword":
+#            attack += 5
+#
+#        if self.curweap == "Great Sword":
+#            attack += 15
+#            
+#        if self.curweap == "Zweilhander":
+#            attack += 50
+#
+#        return attack
+#
+#    def currentLevel(self):
+#        lvl = len([x for x in levels if self.exp > x])
+#        return lvl
 
 
 class Goblin:
@@ -130,37 +134,37 @@ def start1():
     else:
         start1()
 
-def inventory():
-    os.system('clear')
-    print("what do you want to do?")
-    print("1.) Equip Weapon")
-    print("b.) go back")
-    option = input(">>> ")
-    if option == "1":
-        equip()
-    elif option == 'b':
-        start1()
-
-def equip():
-    os.system('clear')
-    print("What do you want to equip?")
-    for weapon in PlayerIG.weap:
-        print(weapon)
-    print("b to go back")
-    option = input(">>> ")
-    if option == PlayerIG.curweap:
-        print("You already have that weapon equipped")
-        option = input(" ")
-        equip()
-    elif option == "b":
-        inventory()
-    elif option in PlayerIG.weap:
-        PlayerIG.curweap = option
-        print("You have equipped %s." % option)
-        option = input(" ")
-        equip()
-    else:
-        print("You don't have %s in your inventory" % option)
+#def inventory():
+#    os.system('clear')
+#    print("what do you want to do?")
+#    print("1.) Equip Weapon")
+#    print("b.) go back")
+#    option = input(">>> ")
+#    if option == "1":
+#        equip()
+#    elif option == 'b':
+#        start1()
+#
+#def equip():
+#    os.system('clear')
+#    print("What do you want to equip?")
+#    for weapon in PlayerIG.weap:
+#        print(weapon)
+#    print("b to go back")
+#    option = input(">>> ")
+#    if option == PlayerIG.curweap:
+#        print("You already have that weapon equipped")
+#        option = input(" ")
+#        equip()
+#    elif option == "b":
+#        inventory()
+#    elif option in PlayerIG.weap:
+#        PlayerIG.curweap = option
+#        print("You have equipped %s." % option)
+#        option = input(" ")
+#        equip()
+#    else:
+#        print("You don't have %s in your inventory" % option)
 
 
 
