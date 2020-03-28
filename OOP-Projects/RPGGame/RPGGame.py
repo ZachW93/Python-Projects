@@ -127,7 +127,8 @@ def start1():
     elif option == "4":
         sys.exit()
     elif option == "5":
-        inventory()
+        'you need to call the player instance'
+        inventory(PlayerIG)
     elif option == "6":
         print("Your current Level is %s" % PlayerIG.currentLevel())
         start1()

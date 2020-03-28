@@ -1,19 +1,19 @@
 import os
 from RPGClasses import Player
 
-def inventory():
+def inventory(player):
     
     playerhere = True;
     
     while playerhere == True:
-        
+
         os.system('clear')
         print("what do you want to do?")
         print("1.) Equip Weapon")
         print("b.) go back")
         option = input(">>> ")
         if option == "1":
-            equip(PlayerIG)
+            equip(player)
         elif option == 'b':
             playerhere = False
 
