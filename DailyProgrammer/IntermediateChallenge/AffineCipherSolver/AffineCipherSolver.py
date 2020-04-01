@@ -184,3 +184,6 @@ def affineCipher(sentence):
                 
     new_sentence = " ".join(new_sentence)
     return new_sentence
+
+
+print(affineCipher('NH WRTEQ TFWRX TGY T YEZVXH GJNMGRXX STPGX NH XRGXR TX QWZJDW ZK WRNUZFB P WTY YEJGB ZE RNSQPRY XZNR YJUU ZSPTQR QZ QWR YETPGX ZGR NPGJQR STXQ TGY URQWR VTEYX WTY XJGB'))
