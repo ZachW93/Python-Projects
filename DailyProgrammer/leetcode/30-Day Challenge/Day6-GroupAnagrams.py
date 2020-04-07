@@ -23,13 +23,9 @@ class Solution:
         outputList = []
         for word in strs:
             sortedWord = "".join(sorted(word))
-            if sortedWord in wordDict:
-                wordDict[sortedWord].append(word)
-            else:
-                wordDict[sortedWord] = [word]
-
-        for key in wordDict:
-            outputList.append(wordDict[key])
+            if sortedWord in wordDict: wordDict[sortedWord].append(word)
+            else: wordDict[sortedWord] = [word]
+        for key in wordDict: outputList.append(wordDict[key])
         return outputList
 
                     
