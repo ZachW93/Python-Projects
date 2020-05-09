@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+"""
+Given an array of non-negative integers, you are initially positioned at the
+first index of the array.
+
+Each element in the array represents your maximum jump length at that position.
+
+Determine if you are able to reach the last index.
+"""
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        
+        length = len(nums)
+        if length <= 1:
+            return True
+
+        start = nums[0] 
+
+        for i in range(length):
+            if start <= i and nums[i] == 0:
+                
+                return False
+            
+            start = max(start, i + nums[i])
+            
+            if start >= (length - 1):
+                
+                return True
