@@ -24,15 +24,41 @@ positions.
 import random
 
 def fallout():
-    
+
+    #This section initializes the difficulty that the user chooses and selects the correct word
+
     difficulty = input("Please Enter a Difficulty Between 1-5: ")
-    difficulty_dict = {'1': (4,5,6), '2': (7,8), '3': (9,10), '4': (11,12), '5': (13,14,15)}
-    size = random.randint(4, random.choice(difficulty_dict[difficulty]))
+    difficulty_dict = {'1': (4,5), '2': (6,7,8), '3': (9,10), '4': (11,12), '5': (13,14,15)}
+    size = random.randint(3, random.choice(difficulty_dict[difficulty]))
     length = random.choice(difficulty_dict[difficulty])
     word_list = get_WordList(length, size)
+
     correct_word = word_list[random.randint(0, len(word_list) - 1)]
     correct_word_list = list(correct_word)
-    
+
+    #end section
+
+    #This section will create the 408 character grid when finding the correct word
+
+    output_str = ""
+    characters = 408
+    last_placement = 0
+    counter = 0
+    output_list = [None] * characters
+
+    for word in word_list:
+        output_list, last_placement, counter = place_word_firsthalf(output_list, word, length,
+                                                                    last_placement, counter)
+
+    output_list = fillListRandom(output_list)
+    output_str = output_str.join(output_list)
+    print(output_str)
+
+    #end section
+'''
+    #This section will allow the user to input one of the words, if correct the user wins, else it will inform
+    #the user how many characters were right and in the right spot. After 4 guesses, the player will lose if
+    #they have not guessed correctly.
 
     user_input = ""
     counter = 0
@@ -61,6 +87,8 @@ def fallout():
     if user_input == correct_word:
         print("Congratulations, you guessed it!")
 
+    #end section
+'''
 def get_WordList(wordListSize, lengthOfWords):
     
     with open("enable1.txt") as f:
@@ -77,5 +105,41 @@ def get_WordList(wordListSize, lengthOfWords):
             continue
     
     return word_list
-  
+
+
+def place_word_firsthalf(current_list: list, word: str, length: int,last_placement: int, counter: int):
+
+
+    word_chars = [x for x in word]
+
+    isPlaced = False
+    while isPlaced != True:
+
+        placement = random.randint(0, len(current_list))
+
+        if current_list[placement + (len(word)-1)] == None and (placement + len(word) - 1 < len(current_list)):
+            isPlaced = True
+
+    for letter in word_chars:
+        current_list[placement] = letter
+        placement += 1
+
+    counter += 1
+
+    return current_list, placement, counter
+
+def fillListRandom(current_list):
+
+    randomChar_hash = {1: "!", 2: '"', 3: "#", 4: "$", 5: "%", 6: "&", 7: "'", 8: "(", 9: ")", 10: "*", 11: "+",
+                       12: "-", 13: ".", 14: "/", 15: ":", 16: ";", 17: "<", 18: "=", 19: ">", 20: "?", 21: "@",
+                       22: "[", 23: '\\', 24: '{', 25: ']', 26: '^', 27: "_", 28: "|", 29: "}", 30: "~"}
+
+    for i in range(0, len(current_list)):
+        if current_list[i] == None:
+
+            randomChar = random.randint(1, 30)
+            current_list[i] = randomChar_hash[randomChar]
+
+    return current_list
+
 fallout()
