@@ -22,7 +22,7 @@ plt.scatter(X[49:100, 0], X[49:100, 1], color='blue', marker='x', label='versico
 plt.xlabel('petal length')
 plt.ylabel('sepal length')
 plt.legend(loc='upper left')
-plt.show()
+plt.savefig('PetalVsSepal.png')
 
 '''
 Below is where we create the Perceptron Algorithm.
@@ -79,7 +79,7 @@ Below is a function that will graph out the linear difference between the two ty
 '''
 
 def plot_decision_regions(X, y, classifier, resolution=0.02):
-    
+
 
     markers = ('s', 'x', 'o', '^', 'v')
     colors = ('red', 'blue', 'light-green', 'gray', 'cyan')
@@ -112,13 +112,16 @@ def plot_decision_regions(X, y, classifier, resolution=0.02):
 
 pl = Perceptron(eta=.01, n_iter=10)
 pl.fit(X, y)
+
+plt.clf()
 plt.plot(range(1, len(pl.errorsList) + 1), pl.errorsList, marker='o')
 plt.xlabel('Epochs')
 plt.ylabel('Number of misclassifications')
-plt.show()
+plt.savefig('ErrorDistribution.png')
 
+plt.clf()
 plot_decision_regions(X, y, classifier=pl)
 plt.xlabel('petal length (cm)')
 plt.ylabel('septal length (cm)')
 plt.legend(loc='upper left')
-plt.show()
+plt.savefig('LinearDistinction.png')
